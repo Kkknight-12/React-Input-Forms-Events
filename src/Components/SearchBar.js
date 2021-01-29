@@ -2,6 +2,13 @@ import { Component } from 'react';
 
 class SearchBar extends Component {
 
+    onInputChange(value){
+        this.setState( {term:value} ) ;
+        console.log(this.state.term)
+    }
+
+    state = { term: '' }
+
     render (  ){
         return(
             <div className="ui segment">
@@ -9,11 +16,12 @@ class SearchBar extends Component {
                     <div className="field">
                         <label >Image Search</label>
                         <input type="text" 
-                        // example of uncontrolled form element
-                        // value stays inside HTML document
-                        // input tag stored value
+                        // example of controlled element
+                        // now React control the storage
+                        value={ this.state.term }
                         onChange={
-                            (e) => console.log(e.target.value) 
+                            (e) =>  { this.onInputChange(e.target.value) }
+                            // (e) =>  this.onInputChange({ term: e.target.value })
                         }/>
                     </div>
                 </form>
@@ -23,4 +31,3 @@ class SearchBar extends Component {
 }
 
 export default SearchBar;
-
