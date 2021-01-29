@@ -15,7 +15,9 @@ class App extends Component {
       headers: {
         Authorization: 'Client-ID _VtG5n6vKkM5SjzwCyxZler0e-VsjL3QDeo_p-w0av0'
       }
-    })
+    }) // request made by axios returns a promise so we can chain .then()
+    .then( (response) => { console.log( response.data.results ) } )
+
   }
 
   render() {
