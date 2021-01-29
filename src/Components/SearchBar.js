@@ -2,17 +2,21 @@ import { Component } from 'react';
 
 class SearchBar extends Component {
 
-    onInputChange(value){
-        this.setState( {term:value} ) ;
-        console.log(this.state.term)
-    }
-
     state = { term: '' }
 
-    render (  ){
+    // using arrow function
+    onFormSubmit = (e) => {
+        e.preventDefault();
+
+        // if arrow function is not used value of this will refer to 
+        // onFormSubmit() and result in error undefined value of state.
+        console.log(this.state.term);
+    }
+
+    render( ) {
         return(
             <div className="ui segment">
-                <form className="ui form" >
+                <form onSubmit={ this.onFormSubmit } className="ui form" >
                     <div className="field">
                         <label >Image Search</label>
                         <input type="text" 
@@ -20,8 +24,7 @@ class SearchBar extends Component {
                         // now React control the storage
                         value={ this.state.term }
                         onChange={
-                            (e) =>  { this.onInputChange(e.target.value) }
-                            // (e) =>  this.onInputChange({ term: e.target.value })
+                            (e) =>  this.setState({ term: e.target.value })
                         }/>
                     </div>
                 </form>
