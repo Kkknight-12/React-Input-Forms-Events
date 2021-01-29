@@ -4,13 +4,12 @@ class SearchBar extends Component {
 
     state = { term: '' }
 
-    // using arrow function
     onFormSubmit = (e) => {
         e.preventDefault();
 
-        // if arrow function is not used value of this will refer to 
-        // onFormSubmit() and result in error undefined value of state.
-        console.log(this.state.term);
+        // to reference the function onSearchSubmit inside prop from App.js  
+        // we need to mention the name onSubmit by which it was saved
+        this.props.onSubmit( this.state.term )
     }
 
     render( ) {
@@ -32,5 +31,10 @@ class SearchBar extends Component {
         )
     }
 }
-
+// now whenever use submit form we are going to run onFormSubmit() from line 18
+// which will take the event and prevent default that would have caused 
+// the page to refesh itself
+// then we look at props object line 12 and call the function which was passed into 
+// onSubmit prop in App.js and invoke that function onSearchSubmit()
+//  with this.state.term
 export default SearchBar;
