@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import axios from 'axios';
+import unsplash from '../api/unsplash'
 import SearchBar from './SearchBar'
 
 class App extends Component {
@@ -14,12 +14,9 @@ class App extends Component {
   // making the function arrow to use this.setState
   onSearchSubmit = async (term) => {
     
-    const response = await axios.get( 'https://api.unsplash.com/search/photos', {
-
+    // now you make request to unsplash.js file
+    const response = await unsplash.get( '/search/photos', {
       params: { query: term },
-      headers: {
-        Authorization: 'Client-ID _VtG5n6vKkM5SjzwCyxZler0e-VsjL3QDeo_p-w0av0'
-      }
     }) 
 
     // map function is built into array object in Js
