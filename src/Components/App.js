@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import unsplash from '../api/unsplash'
 import SearchBar from './SearchBar'
+import ImageList from './ImageList'
 
 class App extends Component {
 
@@ -36,12 +37,10 @@ class App extends Component {
 
     return (
       <div className="ui container" style={{ marginTop: '10px'}}>
-      <SearchBar onSubmit={ this.onSearchSubmit }/>
+        <SearchBar onSubmit={ this.onSearchSubmit }/>
 
-      {/* settting the images to empty array helps here too 
-      as if we have set it to null, length of images would give 
-      error message said cannot access property of length null */}
-      Found : { this.state.images.length } images
+        {/* passing on images to prop images */}
+        <ImageList images={ this.state.images }/>
       </div>
     )
   }
