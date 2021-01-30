@@ -1,21 +1,15 @@
+import ImageCard from './ImageCard'
+
 const ImageList = (props) => {
 
-    // mapping through all the images and storing, 
-    // returning image tag with image
-    const images = props.images.map(
-        (image) => {
-            // adding key which will contain id 
-            // key must be assigned to the root element
-            // if we were passing a div then div would have it
-        return (
-        <img key={image.id} 
-            src={image.urls.regular}
-            alt = {image.description}/>
-        )
+    // mapping through all the images, 
+    // sending them to ImageCard
+    const images = props.images.map( (image) => {
+        return <ImageCard key={image.id} image={image}/>
     })
     return ( 
-        <div>{images}</div>
-     );
+        <div className="image-list">{images}</div>
+    );
 }
- 
+
 export default ImageList;
